@@ -1,0 +1,1113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LaunchPad – Startup Co-Pilot | From Idea to Execution</title>
+  <meta name="description" content="A strategic, rule-based startup planning platform. Evaluate market feasibility, construct buyer personas, prioritize your MVP, benchmark competitors, and execute an actionable 7-day launch sprint." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400..700;1,6..72,400..700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Header / Navigation -->
+  <header class="app-header">
+    <div class="container header-container">
+      <div class="brand" id="brandHome" role="button" tabindex="0">
+        <div class="brand-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/>
+            <path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/>
+            <path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/>
+            <path d="M12 9V4s3.03.55 4 2c1.08 1.62 0 5 0 5"/>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <div class="brand-title">LaunchPad <span class="badge-accent">Co-Pilot</span></div>
+          <div class="brand-subtitle">The Startup Planning Platform</div>
+        </div>
+      </div>
+
+      <nav class="nav-links">
+        <button class="nav-link active" id="navLanding">Overview</button>
+        <button class="nav-link" id="navHowItWorks">How It Works</button>
+        <button class="nav-link" id="navFeatures">Features</button>
+        <button class="nav-link" id="navPlanner">Plan Generator</button>
+        <button class="nav-link" id="navSaved">
+          Saved Plans
+          <span class="badge-count" id="savedCount">0</span>
+        </button>
+      </nav>
+
+      <div class="header-actions">
+        <button class="btn btn-outline btn-sm" id="btnQuickSample">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
+          Try Sample Idea
+        </button>
+        <button class="btn btn-primary btn-sm" id="btnNavGetStarted">
+          <span>Build Your Plan</span>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Application Content -->
+  <main class="main-content">
+    
+    <!-- SECTION 1: HOMEPAGE / LANDING PAGE -->
+    <section class="section-hero" id="landingSection">
+      <div class="container hero-container">
+        
+        <!-- Hero Header -->
+        <div class="hero-badge">
+          <span class="hero-dot"></span>
+          The Founder's Strategic Playbook
+        </div>
+        <h1 class="hero-title">
+          From Idea to <span class="gradient-text">Execution.</span>
+        </h1>
+        <p class="hero-description">
+          Transform raw concepts into validated, investor-ready startup blueprints. Evaluate market feasibility, construct your target customer persona, prioritize your MVP, benchmark competitors, and execute an actionable 7-day launch sprint.
+        </p>
+
+        <div class="hero-cta-group">
+          <button class="btn btn-primary btn-lg" id="btnHeroStart">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+            Build Your Startup Plan
+          </button>
+          <button class="btn btn-outline btn-lg" id="btnHeroExplore">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="m10 15 5-3-5-3v6z"/></svg>
+            Explore Features
+          </button>
+          <button class="btn btn-secondary btn-lg" id="btnHeroSample">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+            Preview Live Sample
+          </button>
+        </div>
+
+        <!-- Custom Editorial Visual Showcase: The 5-Stage Founder Blueprint -->
+        <div class="blueprint-visual-card">
+          <div class="blueprint-visual-header">
+            <div class="visual-header-left">
+              <span class="status-indicator-live"></span>
+              <span class="visual-header-title">The LaunchPad Methodology • Structured Venture Pipeline</span>
+            </div>
+            <div class="visual-header-badge">Deterministic Rule Engine</div>
+          </div>
+          <div class="blueprint-steps-track">
+            <div class="blueprint-step-item">
+              <div class="step-num-pill">01</div>
+              <div class="step-title">Concept Ingestion</div>
+              <div class="step-sub">Problem, Vertical &amp; Budget</div>
+            </div>
+            <div class="blueprint-divider-arrow">→</div>
+            <div class="blueprint-step-item active">
+              <div class="step-num-pill">02</div>
+              <div class="step-title">Feasibility Scoring</div>
+              <div class="step-sub">4-Pillar Algorithmic Index</div>
+            </div>
+            <div class="blueprint-divider-arrow">→</div>
+            <div class="blueprint-step-item">
+              <div class="step-num-pill">03</div>
+              <div class="step-title">Buyer Modeling</div>
+              <div class="step-sub">JTBD &amp; WTP Triggers</div>
+            </div>
+            <div class="blueprint-divider-arrow">→</div>
+            <div class="blueprint-step-item">
+              <div class="step-num-pill">04</div>
+              <div class="step-title">MoSCoW MVP</div>
+              <div class="step-sub">P0 / P1 / P2 Scoping</div>
+            </div>
+            <div class="blueprint-divider-arrow">→</div>
+            <div class="blueprint-step-item">
+              <div class="step-num-pill">05</div>
+              <div class="step-title">7-Day Sprint</div>
+              <div class="step-sub">Daily Execution Tracker</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Real Product Capability Highlights -->
+        <div class="hero-metrics">
+          <div class="metric-card">
+            <div class="metric-icon">📊</div>
+            <div class="metric-val">4-Pillar</div>
+            <div class="metric-label">Market, Execution, Capital &amp; Moat</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-icon">🛠️</div>
+            <div class="metric-val">MoSCoW</div>
+            <div class="metric-label">Interactive MVP Feature Scoping</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-icon">🔍</div>
+            <div class="metric-val">Matrix</div>
+            <div class="metric-label">Side-by-Side Competitor Benchmarking</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-icon">📅</div>
+            <div class="metric-val">7-Day</div>
+            <div class="metric-label">Structured Daily Launch Sprint</div>
+          </div>
+        </div>
+
+        <!-- SECTION: HOW LAUNCHPAD WORKS -->
+        <div class="section-how-it-works" id="howItWorksSection">
+          <div class="section-header text-center">
+            <div class="badge-pill">Step-by-Step Architecture</div>
+            <h2 class="section-title">How LaunchPad Works</h2>
+            <p class="section-desc">A structured framework to eliminate founder guesswork before writing code or spending capital.</p>
+          </div>
+
+          <div class="how-grid">
+            <div class="how-card">
+              <div class="how-step-badge">Phase 1</div>
+              <h3>Define Your Idea Parameters</h3>
+              <p>Input your startup concept, addressable audience, industry vertical, and capital runway. Our system applies structured domain models tailored to your specific constraints.</p>
+            </div>
+            <div class="how-card">
+              <div class="how-step-badge">Phase 2</div>
+              <h3>Algorithmic Feasibility &amp; Positioning</h3>
+              <p>Receive a comprehensive diagnostic breakdown: composite feasibility score, strengths, critical vulnerabilities, risk mitigation protocols, and a hyper-targeted buyer persona.</p>
+            </div>
+            <div class="how-card">
+              <div class="how-step-badge">Phase 3</div>
+              <h3>Execute the 7-Day Sprint</h3>
+              <p>Track your MVP build and check off daily deliverables from customer validation to public launch. All progress persists securely in your browser's local storage.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- SECTION: PLATFORM CORE FEATURES -->
+        <div class="section-features" id="featuresSection">
+          <div class="section-header text-center">
+            <div class="badge-pill">Platform Capabilities</div>
+            <h2 class="section-title">Complete Founder Tooling</h2>
+            <p class="section-desc">Everything required to transition from an initial hypothesis to a live, validated MVP.</p>
+          </div>
+
+          <div class="features-grid">
+            <div class="feature-card">
+              <div class="feature-icon-wrapper terracotta">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+              </div>
+              <h3>4-Pillar Feasibility Scoring</h3>
+              <p>Evaluates concept viability across Market Potential, Execution Velocity, Capital Efficiency, and Defensible Moat with zero external API dependencies.</p>
+            </div>
+
+            <div class="feature-card">
+              <div class="feature-icon-wrapper moss">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+              </div>
+              <h3>Target Customer Persona</h3>
+              <p>Uncovers archetype demographics, acute pain points, willingness-to-pay criteria, and hyper-targeted acquisition channels for early traction.</p>
+            </div>
+
+            <div class="feature-card">
+              <div class="feature-icon-wrapper sage">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              </div>
+              <h3>MoSCoW MVP Feature Builder</h3>
+              <p>Categorizes functionality into Must-Have, Should-Have, and Could-Have tiers. Mark features as built and monitor feature build velocity.</p>
+            </div>
+
+            <div class="feature-card">
+              <div class="feature-icon-wrapper gold">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+              </div>
+              <h3>Competitor Benchmarking</h3>
+              <p>Input and compare direct and indirect alternatives. Document pricing models, key strengths, and vulnerabilities in a structured comparison matrix.</p>
+            </div>
+
+            <div class="feature-card">
+              <div class="feature-icon-wrapper moss">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+              </div>
+              <h3>Monetization &amp; Unit Economics</h3>
+              <p>Recommends optimal business models, 3-tier pricing architectures, expansion revenue streams, and healthy SaaS financial benchmarks.</p>
+            </div>
+
+            <div class="feature-card">
+              <div class="feature-icon-wrapper terracotta">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+              </div>
+              <h3>7-Day Launch Sprint Tracker</h3>
+              <p>Daily actionable deliverables with interactive checkboxes, velocity tracking, and automatic browser persistence to keep founders moving fast.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SECTION 2: STARTUP INPUT INTAKE FORM -->
+    <section class="section-planner" id="plannerSection">
+      <div class="container">
+        
+        <div class="section-header text-center">
+          <div class="badge-pill">Step 1 • Idea Formulation</div>
+          <h2 class="section-title">Configure Your Startup Blueprint</h2>
+          <p class="section-desc">Provide your core concept parameters. Our heuristic analysis engine processes domain constraints, budget capacity, and market dynamics.</p>
+        </div>
+
+        <!-- Sample Presets Bar -->
+        <div class="sample-presets-card">
+          <div class="presets-label">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            Quick Presets:
+          </div>
+          <div class="presets-buttons">
+            <button type="button" class="preset-btn" data-preset="saas">
+              <span class="preset-tag">B2B SaaS</span> DocuBrief: Contract AI
+            </button>
+            <button type="button" class="preset-btn" data-preset="health">
+              <span class="preset-tag">Health</span> MealSync: Desk Worker Macros
+            </button>
+            <button type="button" class="preset-btn" data-preset="ecommerce">
+              <span class="preset-tag">E-Com</span> EcoPack: Sustainable Packaging
+            </button>
+            <button type="button" class="preset-btn" data-preset="edtech">
+              <span class="preset-tag">EdTech</span> SprintPrep: Gamified Coding
+            </button>
+          </div>
+        </div>
+
+        <!-- Planner Form -->
+        <form id="startupForm" class="planner-form-card" novalidate>
+          <div class="form-grid">
+            
+            <!-- Idea Name -->
+            <div class="form-group full-width">
+              <label for="startupName" class="form-label">
+                Startup / Product Name <span class="required">*</span>
+              </label>
+              <input 
+                type="text" 
+                id="startupName" 
+                name="startupName" 
+                class="form-control" 
+                placeholder="e.g., ClientPulse, PodStack, ZeroWaste Grocer..." 
+                required 
+                maxlength="80" 
+              />
+              <div class="form-error" id="nameError">Please enter a startup or product name.</div>
+            </div>
+
+            <!-- Problem & Solution Idea Pitch -->
+            <div class="form-group full-width">
+              <div class="label-row">
+                <label for="startupIdea" class="form-label">
+                  Problem &amp; Solution Value Pitch <span class="required">*</span>
+                </label>
+                <span class="char-count"><span id="charCount">0</span> / 600 characters</span>
+              </div>
+              <textarea 
+                id="startupIdea" 
+                name="startupIdea" 
+                class="form-control" 
+                rows="4" 
+                placeholder="Describe the critical problem your startup solves, how your product delivers the solution, and what unique advantage you offer. (e.g., An automated client onboarding portal for freelance designers that converts signed proposals directly into scheduled Notion tasks and Stripe milestone invoices)."
+                required
+                maxlength="600"
+              ></textarea>
+              <div class="form-error" id="ideaError">Please describe your startup idea (minimum 25 characters).</div>
+            </div>
+
+            <!-- Industry / Vertical -->
+            <div class="form-group">
+              <label for="startupIndustry" class="form-label">
+                Industry / Vertical <span class="required">*</span>
+              </label>
+              <select id="startupIndustry" name="startupIndustry" class="form-control" required>
+                <option value="" disabled selected>Select an industry...</option>
+                <option value="saas">SaaS &amp; B2B Software</option>
+                <option value="ai">AI Tools &amp; Automation</option>
+                <option value="fintech">FinTech &amp; Payments</option>
+                <option value="health">HealthTech &amp; Wellness</option>
+                <option value="edtech">EdTech &amp; Upskilling</option>
+                <option value="ecommerce">E-Commerce &amp; D2C Brands</option>
+                <option value="creator">Creator Economy &amp; Media</option>
+                <option value="marketplace">Two-Sided Marketplace</option>
+                <option value="logistics">B2B Operations &amp; Logistics</option>
+                <option value="cleantech">CleanTech &amp; Sustainability</option>
+              </select>
+              <div class="form-error" id="industryError">Please select an industry category.</div>
+            </div>
+
+            <!-- Target Audience -->
+            <div class="form-group">
+              <label for="targetAudience" class="form-label">
+                Target Audience <span class="required">*</span>
+              </label>
+              <input 
+                type="text" 
+                id="targetAudience" 
+                name="targetAudience" 
+                class="form-control" 
+                placeholder="e.g., Solo Freelancers, Remote Marketing Teams, SMB Retailers..." 
+                required 
+              />
+              <!-- Audience Quick Tags -->
+              <div class="quick-tags" id="audienceTags">
+                <button type="button" class="quick-tag">Freelancers</button>
+                <button type="button" class="quick-tag">Early Founders</button>
+                <button type="button" class="quick-tag">Remote Teams</button>
+                <button type="button" class="quick-tag">SMB Owners</button>
+                <button type="button" class="quick-tag">Gen-Z Creators</button>
+              </div>
+              <div class="form-error" id="audienceError">Please specify your primary target audience.</div>
+            </div>
+
+            <!-- Budget Tier & Capital Allocation -->
+            <div class="form-group full-width">
+              <label class="form-label">
+                Available Budget &amp; Runway <span class="required">*</span>
+              </label>
+              
+              <div class="budget-tiers-grid">
+                <label class="budget-option">
+                  <input type="radio" name="budgetTier" value="bootstrap" checked />
+                  <div class="budget-box">
+                    <div class="budget-tag">Bootstrapped</div>
+                    <div class="budget-amount">&lt; $1,000</div>
+                    <div class="budget-desc">No-code MVP, organic founder outreach, lean tool stack.</div>
+                  </div>
+                </label>
+
+                <label class="budget-option">
+                  <input type="radio" name="budgetTier" value="lean" />
+                  <div class="budget-box">
+                    <div class="budget-tag">Lean Seed</div>
+                    <div class="budget-amount">$1,000 – $5,000</div>
+                    <div class="budget-desc">Dedicated landing page, micro-influencers, custom integrations.</div>
+                  </div>
+                </label>
+
+                <label class="budget-option">
+                  <input type="radio" name="budgetTier" value="growth" />
+                  <div class="budget-box">
+                    <div class="budget-tag">Early Growth</div>
+                    <div class="budget-amount">$5,000 – $20,000</div>
+                    <div class="budget-desc">Custom web app, targeted paid validation, legal &amp; compliance.</div>
+                  </div>
+                </label>
+
+                <label class="budget-option">
+                  <input type="radio" name="budgetTier" value="venture" />
+                  <div class="budget-box">
+                    <div class="budget-tag">Venture Stage</div>
+                    <div class="budget-amount">$20,000+</div>
+                    <div class="budget-desc">Full-stack engineering sprint, multi-channel customer acquisition.</div>
+                  </div>
+                </label>
+              </div>
+
+              <!-- Custom numeric budget input -->
+              <div class="budget-custom-row">
+                <span class="budget-label-small">Or specify exact capital amount:</span>
+                <div class="input-with-symbol">
+                  <span class="currency-symbol">$</span>
+                  <input type="number" id="customBudget" class="form-control form-control-sm" placeholder="e.g. 2500" min="50" max="1000000" step="50" />
+                </div>
+              </div>
+            </div>
+
+            <!-- Business Model & Venture Stage -->
+            <div class="form-group">
+              <label for="businessModel" class="form-label">Preferred Business Model</label>
+              <select id="businessModel" class="form-control">
+                <option value="auto">Auto-Recommend Best Fit</option>
+                <option value="subscription">Subscription (B2B SaaS / Monthly Recurrent)</option>
+                <option value="freemium">Freemium with Pro Tier</option>
+                <option value="usage">Usage-Based / Pay As You Go</option>
+                <option value="marketplace">Marketplace Commission (Take Rate)</option>
+                <option value="direct">Direct Product Sales / One-Time Purchase</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="startupStage" class="form-label">Current Venture Stage</label>
+              <select id="startupStage" class="form-control">
+                <option value="idea">Raw Idea / Initial Concept</option>
+                <option value="validated">Problem Validated with Customers</option>
+                <option value="prototype">Prototype / Wireframe Ready</option>
+                <option value="prelaunch">MVP Built, Pre-Launch Phase</option>
+              </select>
+            </div>
+
+          </div>
+
+          <!-- Form Submit Button -->
+          <div class="form-actions">
+            <button type="submit" class="btn btn-primary btn-xl" id="btnSubmitForm">
+              <span class="btn-text">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+                Generate Startup Blueprint &amp; Sprint
+              </span>
+              <span class="btn-loading" style="display: none;">
+                <span class="spinner"></span>
+                Synthesizing Heuristic Business Matrix...
+              </span>
+            </button>
+            <div class="engine-badge-sub">
+              ⚡ Powered by LaunchPad Heuristic Engine • Transparent Multi-Factor Decision Modeling
+            </div>
+          </div>
+        </form>
+
+      </div>
+    </section>
+
+    <!-- SECTION 3: DASHBOARD WORKSPACE -->
+    <section class="section-dashboard" id="dashboardSection" style="display: none;">
+      <div class="container">
+        
+        <!-- Dashboard Header & Top Bar -->
+        <div class="dashboard-header-card">
+          <div class="dashboard-header-main">
+            <div class="dashboard-title-row">
+              <h2 class="dashboard-plan-title" id="dashPlanName">Startup Blueprint</h2>
+              <div class="dashboard-tags" id="dashTags">
+                <span class="tag tag-industry" id="dashTagIndustry">SaaS</span>
+                <span class="tag tag-budget" id="dashTagBudget">Bootstrapped</span>
+                <span class="tag tag-audience" id="dashTagAudience">Freelancers</span>
+              </div>
+            </div>
+            <p class="dashboard-plan-desc" id="dashPlanDesc">
+              Strategic venture analysis and execution workspace.
+            </p>
+          </div>
+
+          <!-- Actions toolbar -->
+          <div class="dashboard-toolbar">
+            <button class="btn btn-secondary btn-sm" id="btnEditInputs">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+              Edit Inputs
+            </button>
+            <button class="btn btn-outline btn-sm" id="btnSavePlan">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
+              <span id="saveBtnText">Save Plan</span>
+            </button>
+            <button class="btn btn-outline btn-sm" id="btnPrintDossier">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+              Export Dossier
+            </button>
+            <button class="btn btn-primary btn-sm" id="btnNewIdea">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              New Plan
+            </button>
+          </div>
+        </div>
+
+        <!-- Real User Statistics Strip (Requirement 9) -->
+        <div class="dashboard-stats-strip">
+          <div class="stat-strip-item">
+            <div class="stat-strip-label">Feasibility Score</div>
+            <div class="stat-strip-val" id="stripScoreVal">--%</div>
+            <div class="stat-strip-sub" id="stripScoreVerdict">Heuristic Estimate</div>
+          </div>
+          <div class="stat-strip-item">
+            <div class="stat-strip-label">MVP Features Built</div>
+            <div class="stat-strip-val" id="stripMvpVal">0 / 8</div>
+            <div class="stat-strip-sub" id="stripMvpPct">0% Built</div>
+          </div>
+          <div class="stat-strip-item">
+            <div class="stat-strip-label">7-Day Sprint Velocity</div>
+            <div class="stat-strip-val" id="stripRoadmapVal">0 / 21</div>
+            <div class="stat-strip-sub" id="stripRoadmapPct">0% Completed</div>
+          </div>
+          <div class="stat-strip-item">
+            <div class="stat-strip-label">Competitors Tracked</div>
+            <div class="stat-strip-val" id="stripCompetitorVal">0</div>
+            <div class="stat-strip-sub">In Benchmarking Matrix</div>
+          </div>
+          <div class="stat-strip-item">
+            <div class="stat-strip-label">Total Saved Blueprints</div>
+            <div class="stat-strip-val" id="stripSavedVal">0</div>
+            <div class="stat-strip-sub">In Local Storage</div>
+          </div>
+        </div>
+
+        <!-- Dashboard Navigation Tabs -->
+        <div class="dashboard-tabs">
+          <button class="dash-tab active" data-tab="feasibility">
+            <span class="tab-icon">📊</span>
+            Feasibility Analysis
+          </button>
+          <button class="dash-tab" data-tab="swot">
+            <span class="tab-icon">⚖️</span>
+            SWOT &amp; Risks
+          </button>
+          <button class="dash-tab" data-tab="persona">
+            <span class="tab-icon">🎯</span>
+            Target Persona
+          </button>
+          <button class="dash-tab" data-tab="mvp">
+            <span class="tab-icon">🛠️</span>
+            MVP Builder
+            <span class="tab-badge" id="mvpProgressBadge">0%</span>
+          </button>
+          <button class="dash-tab" data-tab="competitors">
+            <span class="tab-icon">🔍</span>
+            Competitor Analysis
+          </button>
+          <button class="dash-tab" data-tab="monetization">
+            <span class="tab-icon">💰</span>
+            Monetization &amp; Pricing
+          </button>
+          <button class="dash-tab tab-highlight" data-tab="roadmap">
+            <span class="tab-icon">📅</span>
+            7-Day Action Plan
+            <span class="tab-badge" id="roadmapProgressBadge">0%</span>
+          </button>
+        </div>
+
+        <!-- TAB CONTENT 1: FEASIBILITY SCORE & STRATEGIC EVALUATION -->
+        <div class="tab-panel active" id="tabFeasibility">
+          <div class="feasibility-hero-grid">
+            
+            <!-- Overall Feasibility Score Gauge Card -->
+            <div class="dash-card score-main-card">
+              <div class="card-badge">Composite Metric</div>
+              <h3 class="card-title">Overall Feasibility Index</h3>
+              
+              <div class="gauge-wrapper">
+                <svg class="score-circle-svg" viewBox="0 0 140 140">
+                  <circle class="circle-bg" cx="70" cy="70" r="58" />
+                  <circle class="circle-progress" id="scoreCircleProgress" cx="70" cy="70" r="58" />
+                </svg>
+                <div class="gauge-center">
+                  <div class="gauge-score" id="overallScoreVal">--</div>
+                  <div class="gauge-max">/ 100</div>
+                </div>
+              </div>
+
+              <div class="score-verdict" id="scoreVerdictBadge">Evaluating...</div>
+              <p class="score-summary-text" id="scoreSummaryDesc">
+                Multi-factor feasibility score calculated across market demand, execution velocity, capital runway, and competitive moat.
+              </p>
+            </div>
+
+            <!-- 4 Pillar Breakdown Cards -->
+            <div class="dash-card pillars-card">
+              <h3 class="card-title">4-Dimension Viability Breakdown</h3>
+              <p class="card-subtitle">Deterministic rule-based weights reflecting early-stage survival factors.</p>
+
+              <div class="pillar-items">
+                <!-- Pillar 1: Market -->
+                <div class="pillar-item">
+                  <div class="pillar-header">
+                    <span class="pillar-name">
+                      <span class="pillar-icon">📈</span> Market Potential &amp; Demand (30%)
+                    </span>
+                    <span class="pillar-score" id="pillarMarketVal">--%</span>
+                  </div>
+                  <div class="progress-bar-bg">
+                    <div class="progress-bar-fill fill-blue" id="pillarMarketBar" style="width: 0%"></div>
+                  </div>
+                  <div class="pillar-rationale" id="pillarMarketRationale">Loading...</div>
+                </div>
+
+                <!-- Pillar 2: Technical -->
+                <div class="pillar-item">
+                  <div class="pillar-header">
+                    <span class="pillar-name">
+                      <span class="pillar-icon">⚙️</span> Technical Execution Velocity (25%)
+                    </span>
+                    <span class="pillar-score" id="pillarTechVal">--%</span>
+                  </div>
+                  <div class="progress-bar-bg">
+                    <div class="progress-bar-fill fill-purple" id="pillarTechBar" style="width: 0%"></div>
+                  </div>
+                  <div class="pillar-rationale" id="pillarTechRationale">Loading...</div>
+                </div>
+
+                <!-- Pillar 3: Financial -->
+                <div class="pillar-item">
+                  <div class="pillar-header">
+                    <span class="pillar-name">
+                      <span class="pillar-icon">💵</span> Capital Efficiency &amp; Runway (25%)
+                    </span>
+                    <span class="pillar-score" id="pillarFinanceVal">--%</span>
+                  </div>
+                  <div class="progress-bar-bg">
+                    <div class="progress-bar-fill fill-green" id="pillarFinanceBar" style="width: 0%"></div>
+                  </div>
+                  <div class="pillar-rationale" id="pillarFinanceRationale">Loading...</div>
+                </div>
+
+                <!-- Pillar 4: Defensibility -->
+                <div class="pillar-item">
+                  <div class="pillar-header">
+                    <span class="pillar-name">
+                      <span class="pillar-icon">🛡️</span> Defensible Moat &amp; Retention (20%)
+                    </span>
+                    <span class="pillar-score" id="pillarMoatVal">--%</span>
+                  </div>
+                  <div class="progress-bar-bg">
+                    <div class="progress-bar-fill fill-amber" id="pillarMoatBar" style="width: 0%"></div>
+                  </div>
+                  <div class="pillar-rationale" id="pillarMoatRationale">Loading...</div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Problem & Solution Evaluation + Market Opportunity Grid (Requirement 4) -->
+          <div class="evaluation-grid mt-4">
+            <div class="dash-card eval-card">
+              <div class="card-badge">Problem &amp; Solution Assessment</div>
+              <h4 class="eval-title" id="evalProblemTitle">Problem Severity &amp; Solution Fit</h4>
+              <p class="eval-body" id="evalProblemBody">
+                Evaluating the acute urgency of the problem against your proposed technical solution and user time-to-value.
+              </p>
+              <div class="eval-chips">
+                <span class="eval-chip" id="chipProblemUrgency">High Problem Urgency</span>
+                <span class="eval-chip" id="chipSolutionClarity">Clear Value Proposition</span>
+              </div>
+            </div>
+
+            <div class="dash-card eval-card">
+              <div class="card-badge">Market Dynamics &amp; Timing</div>
+              <h4 class="eval-title" id="evalMarketTitle">Market Opportunity &amp; Why Now</h4>
+              <p class="eval-body" id="evalMarketBody">
+                Evaluating vertical expansion tailwinds, customer readiness, and technological shifts that make this timing viable.
+              </p>
+              <div class="eval-chips">
+                <span class="eval-chip" id="chipMarketGrowth">Expanding Niche</span>
+                <span class="eval-chip" id="chipTimingWindow">Favorable Timing Window</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Recommended Next Steps Banner (Requirement 4) -->
+          <div class="dash-card mt-4 rec-banner-card">
+            <div class="rec-icon">💡</div>
+            <div class="rec-content">
+              <h4 class="rec-title" id="recHeadline">Recommended Immediate Next Steps</h4>
+              <p class="rec-body" id="recDetailedText">
+                Based on your budget tier and target market, your primary focus should be proving willingness-to-pay within 7 days prior to building custom backend infrastructure.
+              </p>
+              <div class="next-steps-list" id="recNextStepsList">
+                <!-- Injected via JS -->
+              </div>
+            </div>
+          </div>
+
+          <!-- Heuristic Transparency Note (Requirement 4) -->
+          <div class="heuristic-note-box mt-3">
+            <span class="note-icon">ℹ️</span>
+            <span><strong>Heuristic Business Estimation:</strong> All feasibility scores and projections are calculated using rule-based algorithmic decision matrices. They provide structured guidance and hypotheses for founders, not guaranteed financial returns or verified market predictions.</span>
+          </div>
+        </div>
+
+        <!-- TAB CONTENT 2: SWOT & RISKS -->
+        <div class="tab-panel" id="tabSwot">
+          <div class="swot-grid">
+            
+            <!-- Strengths -->
+            <div class="dash-card swot-card swot-strengths">
+              <div class="swot-header">
+                <span class="swot-badge-icon">💪</span>
+                <div>
+                  <h3 class="swot-title">Core Strengths</h3>
+                  <div class="swot-count" id="strengthsCount">3 Key Drivers</div>
+                </div>
+              </div>
+              <ul class="swot-list" id="strengthsList">
+                <!-- Injected via JS -->
+              </ul>
+            </div>
+
+            <!-- Weaknesses -->
+            <div class="dash-card swot-card swot-weaknesses">
+              <div class="swot-header">
+                <span class="swot-badge-icon">⚠️</span>
+                <div>
+                  <h3 class="swot-title">Operational Weaknesses</h3>
+                  <div class="swot-count" id="weaknessesCount">3 Vulnerabilities</div>
+                </div>
+              </div>
+              <ul class="swot-list" id="weaknessesList">
+                <!-- Injected via JS -->
+              </ul>
+            </div>
+
+          </div>
+
+          <!-- Potential Risks & Mitigation Matrix -->
+          <div class="dash-card mt-4">
+            <div class="card-header-between">
+              <div>
+                <h3 class="card-title">Potential Venture Risks &amp; Mitigation Protocols</h3>
+                <p class="card-subtitle">Anticipate critical failure modes before committing engineering hours.</p>
+              </div>
+              <span class="badge-pill">Risk Matrix</span>
+            </div>
+
+            <div class="risk-matrix-table" id="riskMatrixContainer">
+              <!-- Injected via JS -->
+            </div>
+          </div>
+        </div>
+
+        <!-- TAB CONTENT 3: TARGET PERSONA -->
+        <div class="tab-panel" id="tabPersona">
+          <div class="persona-grid">
+            
+            <!-- Persona Profile Card -->
+            <div class="dash-card persona-profile-card">
+              <div class="persona-avatar-wrap">
+                <div class="persona-avatar" id="personaAvatar">👤</div>
+                <div class="persona-identity">
+                  <h3 class="persona-name" id="personaName">Early-Stage Alex</h3>
+                  <div class="persona-role" id="personaRole">Freelancer &amp; Creative Studio Lead</div>
+                  <div class="persona-demographics" id="personaDemographics">Age 27-38 • Tech-Forward • High Time-Scarcity</div>
+                </div>
+              </div>
+
+              <div class="persona-quote-box">
+                <div class="quote-symbol">“</div>
+                <div class="quote-text" id="personaQuote">
+                  I spend half my week wrestling with fragmented tools instead of doing the high-value work clients actually pay me for.
+                </div>
+              </div>
+
+              <div class="persona-jtbd-box">
+                <div class="jtbd-label">Job To Be Done (JTBD):</div>
+                <div class="jtbd-text" id="personaJTBD">
+                  Eliminate repetitive manual overhead so I can deliver faster and scale billable revenue.
+                </div>
+              </div>
+            </div>
+
+            <!-- Persona Psychological & Behavioral Breakdown -->
+            <div class="dash-card persona-details-card">
+              
+              <!-- Acute Pain Points -->
+              <div class="persona-section">
+                <h4 class="persona-section-title">
+                  <span class="sec-icon">🔥</span> Acute Pain Points &amp; Bottlenecks
+                </h4>
+                <ul class="tag-bullet-list" id="personaPainPoints">
+                  <!-- Injected via JS -->
+                </ul>
+              </div>
+
+              <!-- Desired Outcomes -->
+              <div class="persona-section mt-3">
+                <h4 class="persona-section-title">
+                  <span class="sec-icon">🎯</span> Desired Outcomes &amp; Success Metrics
+                </h4>
+                <ul class="tag-bullet-list" id="personaOutcomes">
+                  <!-- Injected via JS -->
+                </ul>
+              </div>
+
+              <!-- Buying Triggers & Channels -->
+              <div class="persona-subgrid mt-3">
+                <div class="subgrid-col">
+                  <h4 class="persona-section-title">
+                    <span class="sec-icon">💳</span> Willingness to Pay Triggers
+                  </h4>
+                  <ul class="compact-list" id="personaPayTriggers">
+                    <!-- Injected via JS -->
+                  </ul>
+                </div>
+                <div class="subgrid-col">
+                  <h4 class="persona-section-title">
+                    <span class="sec-icon">📡</span> High-Converting Outreach Channels
+                  </h4>
+                  <div class="channel-pills" id="personaChannels">
+                    <!-- Injected via JS -->
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+
+        <!-- TAB CONTENT 4: MVP BUILDER (Requirement 5) -->
+        <div class="tab-panel" id="tabMvp">
+          
+          <!-- MVP Velocity Progress Card -->
+          <div class="dash-card mvp-progress-card">
+            <div class="mvp-progress-header">
+              <div>
+                <span class="badge-pill green">Interactive MVP Scope</span>
+                <h3 class="card-title">MVP Feature Scoping &amp; Build Velocity</h3>
+                <p class="card-subtitle">Check off features as you build them. Prevent scope creep by focusing on P0 blockers first.</p>
+              </div>
+              <div class="mvp-progress-stat-box">
+                <div class="mvp-stat-number"><span id="mvpBuiltCount">0</span> / <span id="mvpTotalCount">8</span></div>
+                <div class="mvp-stat-label">Features Built</div>
+              </div>
+            </div>
+
+            <div class="sprint-progress-track">
+              <div class="sprint-progress-fill" id="mvpProgressBar" style="width: 0%"></div>
+            </div>
+
+            <div class="mvp-header-bar">
+              <div class="mvp-filter-tabs">
+                <button class="mvp-filter-btn active" data-filter="all">All Features</button>
+                <button class="mvp-filter-btn" data-filter="p0">Must Have (P0)</button>
+                <button class="mvp-filter-btn" data-filter="p1">Should Have (P1)</button>
+                <button class="mvp-filter-btn" data-filter="p2">Could Have (P2)</button>
+              </div>
+
+              <!-- Button to open add custom feature drawer -->
+              <button class="btn btn-outline btn-sm" id="btnToggleAddMvp">
+                + Add Custom Feature
+              </button>
+            </div>
+          </div>
+
+          <!-- Add Custom Feature Inline Form -->
+          <div class="dash-card add-feature-card" id="addFeatureBox" style="display: none;">
+            <h4 class="add-feature-title">Add Custom MVP Feature</h4>
+            <div class="add-feature-grid">
+              <input type="text" id="newFeatureTitle" class="form-control form-control-sm" placeholder="Feature name (e.g., Stripe Webhook for invoice sync)" />
+              <select id="newFeaturePriority" class="form-control form-control-sm">
+                <option value="p0">P0 – Must Have</option>
+                <option value="p1" selected>P1 – Should Have</option>
+                <option value="p2">P2 – Could Have</option>
+              </select>
+              <input type="text" id="newFeatureRationale" class="form-control form-control-sm" placeholder="Why this matters (e.g., Eliminates manual accounting delay)" />
+              <button type="button" class="btn btn-primary btn-sm" id="btnSaveCustomFeature">Save Feature</button>
+            </div>
+          </div>
+
+          <!-- MVP Features Interactive List -->
+          <div class="mvp-features-list" id="mvpFeaturesList">
+            <!-- Injected via JS -->
+          </div>
+        </div>
+
+        <!-- TAB CONTENT 5: COMPETITOR ANALYSIS (Requirement 7) -->
+        <div class="tab-panel" id="tabCompetitors">
+          <div class="dash-card">
+            <div class="card-header-between">
+              <div>
+                <span class="badge-pill">Market Positioning</span>
+                <h3 class="card-title">Competitor Research &amp; Benchmarking</h3>
+                <p class="card-subtitle">
+                  Document and compare direct and indirect alternatives. Identify their vulnerabilities to position your product effectively.
+                </p>
+              </div>
+              <button class="btn btn-primary btn-sm" id="btnToggleAddCompetitor">
+                + Add Competitor
+              </button>
+            </div>
+
+            <!-- Add Competitor Inline Form -->
+            <div class="add-competitor-box" id="addCompetitorBox" style="display: none;">
+              <h4 class="add-feature-title">Benchmark a New Competitor</h4>
+              <div class="competitor-form-grid">
+                <div class="form-group">
+                  <label class="form-label">Competitor / Tool Name *</label>
+                  <input type="text" id="compName" class="form-control form-control-sm" placeholder="e.g., LegacySaaS, Manual Spreadsheets" />
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Pricing Model / Tiers</label>
+                  <input type="text" id="compPricing" class="form-control form-control-sm" placeholder="e.g., $99/mo or Free basic" />
+                </div>
+                <div class="form-group full-width">
+                  <label class="form-label">Product Description / Focus</label>
+                  <input type="text" id="compDesc" class="form-control form-control-sm" placeholder="e.g., Bloated enterprise platform requiring weeks of setup" />
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Key Strengths</label>
+                  <input type="text" id="compStrengths" class="form-control form-control-sm" placeholder="e.g., High brand recognition, big budget" />
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Key Weaknesses / Gaps</label>
+                  <input type="text" id="compWeaknesses" class="form-control form-control-sm" placeholder="e.g., Complex UI, no indie pricing, slow support" />
+                </div>
+              </div>
+              <div class="competitor-form-actions">
+                <button type="button" class="btn btn-secondary btn-sm" id="btnCancelAddCompetitor">Cancel</button>
+                <button type="button" class="btn btn-primary btn-sm" id="btnSaveCompetitor">Add to Matrix</button>
+              </div>
+            </div>
+
+            <!-- Competitor Comparison Table -->
+            <div class="competitor-table-wrapper">
+              <table class="competitor-table" id="competitorTable">
+                <thead>
+                  <tr>
+                    <th>Competitor</th>
+                    <th>Overview &amp; Focus</th>
+                    <th>Pricing</th>
+                    <th>Key Strengths</th>
+                    <th>Key Weaknesses</th>
+                    <th style="text-align: right;">Action</th>
+                  </tr>
+                </thead>
+                <tbody id="competitorTableBody">
+                  <!-- Injected via JS -->
+                </tbody>
+              </table>
+            </div>
+
+            <div class="heuristic-note-box mt-3">
+              <span class="note-icon">ℹ️</span>
+              <span><strong>Competitor Matrix Note:</strong> Entries represent founder-curated market benchmarks to map differentiation. No claims of automated live market web scraping are made.</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- TAB CONTENT 6: MONETIZATION STRATEGIES -->
+        <div class="tab-panel" id="tabMonetization">
+          <div class="monetization-grid">
+            
+            <!-- Primary Model Overview -->
+            <div class="dash-card primary-model-card">
+              <div class="card-badge">Recommended Model</div>
+              <h3 class="card-title" id="monetizationPrimaryModel">Tiered B2B SaaS Subscription</h3>
+              <p class="card-subtitle" id="monetizationModelRationale">
+                Predictable recurring revenue with low barrier to entry and expansion tiers.
+              </p>
+
+              <div class="pricing-tiers-grid" id="pricingTiersGrid">
+                <!-- 3 Pricing tiers injected via JS -->
+              </div>
+            </div>
+
+            <!-- Secondary Monetization Streams & Unit Economics -->
+            <div class="monetization-sidebar">
+              
+              <!-- Secondary Streams -->
+              <div class="dash-card secondary-streams-card">
+                <h3 class="card-title">Expansion &amp; Secondary Revenue</h3>
+                <div class="stream-items" id="secondaryStreamsList">
+                  <!-- Injected via JS -->
+                </div>
+              </div>
+
+              <!-- Unit Economics Guardrails -->
+              <div class="dash-card unit-metrics-card">
+                <h3 class="card-title">Early Unit Economics Benchmarks</h3>
+                <div class="unit-metric-item">
+                  <div class="unit-metric-label">Target LTV : CAC Ratio</div>
+                  <div class="unit-metric-val">&ge; 3.0x</div>
+                  <div class="unit-metric-hint">Ensure customer lifetime value covers acquisition at scale.</div>
+                </div>
+                <div class="unit-metric-item">
+                  <div class="unit-metric-label">Target Gross Margin</div>
+                  <div class="unit-metric-val" id="targetMarginVal">75% – 85%</div>
+                  <div class="unit-metric-hint">Healthy buffer for cloud hosting and support overhead.</div>
+                </div>
+                <div class="unit-metric-item">
+                  <div class="unit-metric-label">Target Payback Period</div>
+                  <div class="unit-metric-val">&lt; 6 Months</div>
+                  <div class="unit-metric-hint">Recoup customer acquisition costs quickly for reinvestment.</div>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+
+        <!-- TAB CONTENT 7: 7-DAY STARTUP ACTION PLAN (Requirement 6) -->
+        <div class="tab-panel" id="tabRoadmap">
+          
+          <!-- Sprint Progress Bar & Tracker -->
+          <div class="dash-card sprint-progress-card">
+            <div class="sprint-progress-header">
+              <div>
+                <span class="badge-pill green">Active Action Sprint</span>
+                <h3 class="sprint-title">7-Day Founder Launch Sprint</h3>
+                <p class="sprint-subtitle">Execute practical daily deliverables. Progress saves automatically in your browser.</p>
+              </div>
+              <div class="sprint-stats">
+                <div class="stat-number">
+                  <span id="sprintTasksCompleted">0</span> / <span id="sprintTasksTotal">21</span>
+                </div>
+                <div class="stat-label">Tasks Completed</div>
+              </div>
+            </div>
+
+            <div class="sprint-progress-track">
+              <div class="sprint-progress-fill" id="sprintProgressBar" style="width: 0%"></div>
+            </div>
+
+            <div class="sprint-footer-actions">
+              <div class="sprint-status-msg" id="sprintStatusMsg">
+                Sprint Ready • Check off your first task on Day 1 to begin!
+              </div>
+              <div class="sprint-action-btns">
+                <button class="btn btn-outline btn-xs" id="btnResetTasks">Reset Checklist</button>
+                <button class="btn btn-secondary btn-xs" id="btnCompleteAllTasks">Mark All Complete</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- 7 Days Grid / Accordion -->
+          <div class="roadmap-days-list" id="roadmapDaysList">
+            <!-- 7 Days generated dynamically via JS with interactive checkboxes -->
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- SAVED PLANS DRAWER / MODAL -->
+  <div class="modal-backdrop" id="savedPlansModal" style="display: none;">
+    <div class="modal-box modal-lg">
+      <div class="modal-header">
+        <div class="modal-title-wrap">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
+          <h3 class="modal-title">Saved Startup Blueprints</h3>
+          <span class="badge-count" id="modalSavedCount">0</span>
+        </div>
+        <button class="modal-close" id="btnCloseSavedModal" aria-label="Close modal">&times;</button>
+      </div>
+
+      <div class="modal-body">
+        <div class="saved-search-row">
+          <input type="text" id="searchSavedPlans" class="form-control form-control-sm" placeholder="Search saved ideas by name, industry, or audience..." />
+          <button class="btn btn-outline btn-sm" id="btnExportAllPlans">Backup All (JSON)</button>
+        </div>
+
+        <div class="saved-plans-container" id="savedPlansList">
+          <!-- Dynamically populated or empty state -->
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn btn-secondary btn-sm" id="btnDismissSaved">Close</button>
+        <button class="btn btn-primary btn-sm" id="btnCreateNewFromSaved">+ Create New Plan</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOAST NOTIFICATION CONTAINER -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- CLEAN PRODUCT FOOTER -->
+  <footer class="app-footer">
+    <div class="container footer-container">
+      <div class="footer-left">
+        <span class="footer-brand">LaunchPad</span> &bull; The Startup Co-Pilot
+        <span class="footer-challenge">From Idea to Execution</span>
+      </div>
+      <div class="footer-right">
+        <span>Private &amp; Offline-Ready • 100% Client-Side Storage • Zero Trackers</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
