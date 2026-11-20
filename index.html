@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' https://fonts.googleapis.com 'unsafe-inline'; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; script-src 'self'; connect-src 'self'; base-uri 'self'; form-action 'self';" />
   <title>LaunchPad – Startup Co-Pilot | From Idea to Execution</title>
   <meta name="description" content="A strategic, rule-based startup planning platform. Evaluate market feasibility, construct buyer personas, prioritize your MVP, benchmark competitors, and execute an actionable 7-day launch sprint." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -12,12 +13,15 @@
 </head>
 <body>
 
+  <!-- Accessible Skip Link -->
+  <a href="#mainContent" class="skip-link">Skip to main content</a>
+
   <!-- Header / Navigation -->
   <header class="app-header">
     <div class="container header-container">
-      <div class="brand" id="brandHome" role="button" tabindex="0">
+      <div class="brand" id="brandHome" role="button" tabindex="0" aria-label="LaunchPad Home">
         <div class="brand-icon">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/>
             <path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/>
             <path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/>
@@ -30,7 +34,7 @@
         </div>
       </div>
 
-      <nav class="nav-links">
+      <nav class="nav-links" aria-label="Main Navigation">
         <button class="nav-link active" id="navLanding">Overview</button>
         <button class="nav-link" id="navHowItWorks">How It Works</button>
         <button class="nav-link" id="navFeatures">Features</button>
@@ -42,20 +46,20 @@
       </nav>
 
       <div class="header-actions">
-        <button class="btn btn-outline btn-sm" id="btnQuickSample">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
+        <button class="btn btn-outline btn-sm" id="btnQuickSample" aria-label="Try Sample Idea">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
           Try Sample Idea
         </button>
         <button class="btn btn-primary btn-sm" id="btnNavGetStarted">
           <span>Build Your Plan</span>
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </button>
       </div>
     </div>
   </header>
 
   <!-- Main Application Content -->
-  <main class="main-content">
+  <main class="main-content" id="mainContent">
     
     <!-- SECTION 1: HOMEPAGE / LANDING PAGE -->
     <section class="section-hero" id="landingSection">
@@ -292,8 +296,9 @@
                 placeholder="e.g., ClientPulse, PodStack, ZeroWaste Grocer..." 
                 required 
                 maxlength="80" 
+                aria-describedby="nameError"
               />
-              <div class="form-error" id="nameError">Please enter a startup or product name.</div>
+              <div class="form-error" id="nameError" role="alert">Please enter a startup or product name.</div>
             </div>
 
             <!-- Problem & Solution Idea Pitch -->
@@ -312,8 +317,9 @@
                 placeholder="Describe the critical problem your startup solves, how your product delivers the solution, and what unique advantage you offer. (e.g., An automated client onboarding portal for freelance designers that converts signed proposals directly into scheduled Notion tasks and Stripe milestone invoices)."
                 required
                 maxlength="600"
+                aria-describedby="ideaError"
               ></textarea>
-              <div class="form-error" id="ideaError">Please describe your startup idea (minimum 25 characters).</div>
+              <div class="form-error" id="ideaError" role="alert">Please describe your startup idea (minimum 25 characters).</div>
             </div>
 
             <!-- Industry / Vertical -->
@@ -321,7 +327,7 @@
               <label for="startupIndustry" class="form-label">
                 Industry / Vertical <span class="required">*</span>
               </label>
-              <select id="startupIndustry" name="startupIndustry" class="form-control" required>
+              <select id="startupIndustry" name="startupIndustry" class="form-control" required aria-describedby="industryError">
                 <option value="" disabled selected>Select an industry...</option>
                 <option value="saas">SaaS &amp; B2B Software</option>
                 <option value="ai">AI Tools &amp; Automation</option>
@@ -334,7 +340,7 @@
                 <option value="logistics">B2B Operations &amp; Logistics</option>
                 <option value="cleantech">CleanTech &amp; Sustainability</option>
               </select>
-              <div class="form-error" id="industryError">Please select an industry category.</div>
+              <div class="form-error" id="industryError" role="alert">Please select an industry category.</div>
             </div>
 
             <!-- Target Audience -->
@@ -349,6 +355,8 @@
                 class="form-control" 
                 placeholder="e.g., Solo Freelancers, Remote Marketing Teams, SMB Retailers..." 
                 required 
+                maxlength="100"
+                aria-describedby="audienceError"
               />
               <!-- Audience Quick Tags -->
               <div class="quick-tags" id="audienceTags">
@@ -358,16 +366,16 @@
                 <button type="button" class="quick-tag">SMB Owners</button>
                 <button type="button" class="quick-tag">Gen-Z Creators</button>
               </div>
-              <div class="form-error" id="audienceError">Please specify your primary target audience.</div>
+              <div class="form-error" id="audienceError" role="alert">Please specify your primary target audience.</div>
             </div>
 
             <!-- Budget Tier & Capital Allocation -->
             <div class="form-group full-width">
-              <label class="form-label">
+              <label class="form-label" id="budgetTierLabel">
                 Available Budget &amp; Runway <span class="required">*</span>
               </label>
               
-              <div class="budget-tiers-grid">
+              <div class="budget-tiers-grid" role="radiogroup" aria-labelledby="budgetTierLabel">
                 <label class="budget-option">
                   <input type="radio" name="budgetTier" value="bootstrap" checked />
                   <div class="budget-box">
@@ -407,10 +415,10 @@
 
               <!-- Custom numeric budget input -->
               <div class="budget-custom-row">
-                <span class="budget-label-small">Or specify exact capital amount:</span>
+                <label for="customBudget" class="budget-label-small">Or specify exact capital amount:</label>
                 <div class="input-with-symbol">
                   <span class="currency-symbol">$</span>
-                  <input type="number" id="customBudget" class="form-control form-control-sm" placeholder="e.g. 2500" min="50" max="1000000" step="50" />
+                  <input type="number" id="customBudget" class="form-control form-control-sm" placeholder="e.g. 2500" min="50" max="1000000" step="50" aria-label="Or specify exact capital amount in USD" />
                 </div>
               </div>
             </div>
@@ -532,33 +540,33 @@
         </div>
 
         <!-- Dashboard Navigation Tabs -->
-        <div class="dashboard-tabs">
-          <button class="dash-tab active" data-tab="feasibility">
+        <div class="dashboard-tabs" role="tablist" aria-label="Startup Blueprint Sections">
+          <button class="dash-tab active" data-tab="feasibility" role="tab" id="tab-btn-feasibility" aria-controls="tabFeasibility" aria-selected="true" tabindex="0">
             <span class="tab-icon">📊</span>
             Feasibility Analysis
           </button>
-          <button class="dash-tab" data-tab="swot">
+          <button class="dash-tab" data-tab="swot" role="tab" id="tab-btn-swot" aria-controls="tabSwot" aria-selected="false" tabindex="-1">
             <span class="tab-icon">⚖️</span>
             SWOT &amp; Risks
           </button>
-          <button class="dash-tab" data-tab="persona">
+          <button class="dash-tab" data-tab="persona" role="tab" id="tab-btn-persona" aria-controls="tabPersona" aria-selected="false" tabindex="-1">
             <span class="tab-icon">🎯</span>
             Target Persona
           </button>
-          <button class="dash-tab" data-tab="mvp">
+          <button class="dash-tab" data-tab="mvp" role="tab" id="tab-btn-mvp" aria-controls="tabMvp" aria-selected="false" tabindex="-1">
             <span class="tab-icon">🛠️</span>
             MVP Builder
             <span class="tab-badge" id="mvpProgressBadge">0%</span>
           </button>
-          <button class="dash-tab" data-tab="competitors">
+          <button class="dash-tab" data-tab="competitors" role="tab" id="tab-btn-competitors" aria-controls="tabCompetitors" aria-selected="false" tabindex="-1">
             <span class="tab-icon">🔍</span>
             Competitor Analysis
           </button>
-          <button class="dash-tab" data-tab="monetization">
+          <button class="dash-tab" data-tab="monetization" role="tab" id="tab-btn-monetization" aria-controls="tabMonetization" aria-selected="false" tabindex="-1">
             <span class="tab-icon">💰</span>
             Monetization &amp; Pricing
           </button>
-          <button class="dash-tab tab-highlight" data-tab="roadmap">
+          <button class="dash-tab tab-highlight" data-tab="roadmap" role="tab" id="tab-btn-roadmap" aria-controls="tabRoadmap" aria-selected="false" tabindex="-1">
             <span class="tab-icon">📅</span>
             7-Day Action Plan
             <span class="tab-badge" id="roadmapProgressBadge">0%</span>
@@ -566,7 +574,7 @@
         </div>
 
         <!-- TAB CONTENT 1: FEASIBILITY SCORE & STRATEGIC EVALUATION -->
-        <div class="tab-panel active" id="tabFeasibility">
+        <div class="tab-panel active" id="tabFeasibility" role="tabpanel" aria-labelledby="tab-btn-feasibility" tabindex="0">
           <div class="feasibility-hero-grid">
             
             <!-- Overall Feasibility Score Gauge Card -->
@@ -706,7 +714,7 @@
         </div>
 
         <!-- TAB CONTENT 2: SWOT & RISKS -->
-        <div class="tab-panel" id="tabSwot">
+        <div class="tab-panel" id="tabSwot" role="tabpanel" aria-labelledby="tab-btn-swot" tabindex="0">
           <div class="swot-grid">
             
             <!-- Strengths -->
@@ -756,7 +764,7 @@
         </div>
 
         <!-- TAB CONTENT 3: TARGET PERSONA -->
-        <div class="tab-panel" id="tabPersona">
+        <div class="tab-panel" id="tabPersona" role="tabpanel" aria-labelledby="tab-btn-persona" tabindex="0">
           <div class="persona-grid">
             
             <!-- Persona Profile Card -->
@@ -834,7 +842,7 @@
         </div>
 
         <!-- TAB CONTENT 4: MVP BUILDER (Requirement 5) -->
-        <div class="tab-panel" id="tabMvp">
+        <div class="tab-panel" id="tabMvp" role="tabpanel" aria-labelledby="tab-btn-mvp" tabindex="0">
           
           <!-- MVP Velocity Progress Card -->
           <div class="dash-card mvp-progress-card">
@@ -873,13 +881,16 @@
           <div class="dash-card add-feature-card" id="addFeatureBox" style="display: none;">
             <h4 class="add-feature-title">Add Custom MVP Feature</h4>
             <div class="add-feature-grid">
-              <input type="text" id="newFeatureTitle" class="form-control form-control-sm" placeholder="Feature name (e.g., Stripe Webhook for invoice sync)" />
+              <label for="newFeatureTitle" class="sr-only">Feature Name</label>
+              <input type="text" id="newFeatureTitle" class="form-control form-control-sm" placeholder="Feature name (e.g., Stripe Webhook for invoice sync)" maxlength="100" />
+              <label for="newFeaturePriority" class="sr-only">Priority Level</label>
               <select id="newFeaturePriority" class="form-control form-control-sm">
                 <option value="p0">P0 – Must Have</option>
                 <option value="p1" selected>P1 – Should Have</option>
                 <option value="p2">P2 – Could Have</option>
               </select>
-              <input type="text" id="newFeatureRationale" class="form-control form-control-sm" placeholder="Why this matters (e.g., Eliminates manual accounting delay)" />
+              <label for="newFeatureRationale" class="sr-only">Feature Strategic Rationale</label>
+              <input type="text" id="newFeatureRationale" class="form-control form-control-sm" placeholder="Why this matters (e.g., Eliminates manual accounting delay)" maxlength="200" />
               <button type="button" class="btn btn-primary btn-sm" id="btnSaveCustomFeature">Save Feature</button>
             </div>
           </div>
@@ -891,7 +902,7 @@
         </div>
 
         <!-- TAB CONTENT 5: COMPETITOR ANALYSIS (Requirement 7) -->
-        <div class="tab-panel" id="tabCompetitors">
+        <div class="tab-panel" id="tabCompetitors" role="tabpanel" aria-labelledby="tab-btn-competitors" tabindex="0">
           <div class="dash-card">
             <div class="card-header-between">
               <div>
@@ -911,24 +922,24 @@
               <h4 class="add-feature-title">Benchmark a New Competitor</h4>
               <div class="competitor-form-grid">
                 <div class="form-group">
-                  <label class="form-label">Competitor / Tool Name *</label>
-                  <input type="text" id="compName" class="form-control form-control-sm" placeholder="e.g., LegacySaaS, Manual Spreadsheets" />
+                  <label for="compName" class="form-label">Competitor / Tool Name *</label>
+                  <input type="text" id="compName" class="form-control form-control-sm" placeholder="e.g., LegacySaaS, Manual Spreadsheets" maxlength="80" />
                 </div>
                 <div class="form-group">
-                  <label class="form-label">Pricing Model / Tiers</label>
-                  <input type="text" id="compPricing" class="form-control form-control-sm" placeholder="e.g., $99/mo or Free basic" />
+                  <label for="compPricing" class="form-label">Pricing Model / Tiers</label>
+                  <input type="text" id="compPricing" class="form-control form-control-sm" placeholder="e.g., $99/mo or Free basic" maxlength="60" />
                 </div>
                 <div class="form-group full-width">
-                  <label class="form-label">Product Description / Focus</label>
-                  <input type="text" id="compDesc" class="form-control form-control-sm" placeholder="e.g., Bloated enterprise platform requiring weeks of setup" />
+                  <label for="compDesc" class="form-label">Product Description / Focus</label>
+                  <input type="text" id="compDesc" class="form-control form-control-sm" placeholder="e.g., Bloated enterprise platform requiring weeks of setup" maxlength="200" />
                 </div>
                 <div class="form-group">
-                  <label class="form-label">Key Strengths</label>
-                  <input type="text" id="compStrengths" class="form-control form-control-sm" placeholder="e.g., High brand recognition, big budget" />
+                  <label for="compStrengths" class="form-label">Key Strengths</label>
+                  <input type="text" id="compStrengths" class="form-control form-control-sm" placeholder="e.g., High brand recognition, big budget" maxlength="200" />
                 </div>
                 <div class="form-group">
-                  <label class="form-label">Key Weaknesses / Gaps</label>
-                  <input type="text" id="compWeaknesses" class="form-control form-control-sm" placeholder="e.g., Complex UI, no indie pricing, slow support" />
+                  <label for="compWeaknesses" class="form-label">Key Weaknesses / Gaps</label>
+                  <input type="text" id="compWeaknesses" class="form-control form-control-sm" placeholder="e.g., Complex UI, no indie pricing, slow support" maxlength="200" />
                 </div>
               </div>
               <div class="competitor-form-actions">
@@ -942,15 +953,19 @@
               <table class="competitor-table" id="competitorTable">
                 <thead>
                   <tr>
-                    <th>Competitor</th>
-                    <th>Overview &amp; Focus</th>
-                    <th>Pricing</th>
-                    <th>Key Strengths</th>
-                    <th>Key Weaknesses</th>
-                    <th style="text-align: right;">Action</th>
+                    <th scope="col">Competitor</th>
+                    <th scope="col">Overview &amp; Focus</th>
+                    <th scope="col">Pricing</th>
+                    <th scope="col">Key Strengths</th>
+                    <th scope="col">Key Weaknesses</th>
+                    <th scope="col" style="text-align: right;">Action</th>
                   </tr>
                 </thead>
                 <tbody id="competitorTableBody">
+                  <!-- Injected via JS -->
+                </tbody>
+              </table>
+            </div>
                   <!-- Injected via JS -->
                 </tbody>
               </table>
@@ -964,7 +979,7 @@
         </div>
 
         <!-- TAB CONTENT 6: MONETIZATION STRATEGIES -->
-        <div class="tab-panel" id="tabMonetization">
+        <div class="tab-panel" id="tabMonetization" role="tabpanel" aria-labelledby="tab-btn-monetization" tabindex="0">
           <div class="monetization-grid">
             
             <!-- Primary Model Overview -->
@@ -1017,7 +1032,7 @@
         </div>
 
         <!-- TAB CONTENT 7: 7-DAY STARTUP ACTION PLAN (Requirement 6) -->
-        <div class="tab-panel" id="tabRoadmap">
+        <div class="tab-panel" id="tabRoadmap" role="tabpanel" aria-labelledby="tab-btn-roadmap" tabindex="0">
           
           <!-- Sprint Progress Bar & Tracker -->
           <div class="dash-card sprint-progress-card">
@@ -1063,20 +1078,21 @@
   </main>
 
   <!-- SAVED PLANS DRAWER / MODAL -->
-  <div class="modal-backdrop" id="savedPlansModal" style="display: none;">
+  <div class="modal-backdrop" id="savedPlansModal" role="dialog" aria-modal="true" aria-labelledby="savedPlansModalTitle" style="display: none;">
     <div class="modal-box modal-lg">
       <div class="modal-header">
         <div class="modal-title-wrap">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
-          <h3 class="modal-title">Saved Startup Blueprints</h3>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
+          <h3 class="modal-title" id="savedPlansModalTitle">Saved Startup Blueprints</h3>
           <span class="badge-count" id="modalSavedCount">0</span>
         </div>
-        <button class="modal-close" id="btnCloseSavedModal" aria-label="Close modal">&times;</button>
+        <button class="modal-close" id="btnCloseSavedModal" aria-label="Close saved blueprints dialog">&times;</button>
       </div>
 
       <div class="modal-body">
         <div class="saved-search-row">
-          <input type="text" id="searchSavedPlans" class="form-control form-control-sm" placeholder="Search saved ideas by name, industry, or audience..." />
+          <label for="searchSavedPlans" class="sr-only">Search saved blueprints</label>
+          <input type="text" id="searchSavedPlans" class="form-control form-control-sm" placeholder="Search saved ideas by name, industry, or audience..." aria-label="Search saved blueprints by name, industry, or audience" />
           <button class="btn btn-outline btn-sm" id="btnExportAllPlans">Backup All (JSON)</button>
         </div>
 
@@ -1092,8 +1108,11 @@
     </div>
   </div>
 
+  <!-- ACCESSIBLE SCREEN READER LIVE ANNOUNCER -->
+  <div id="a11yAnnouncer" class="sr-only" aria-live="polite" aria-atomic="true"></div>
+
   <!-- TOAST NOTIFICATION CONTAINER -->
-  <div class="toast-container" id="toastContainer"></div>
+  <div class="toast-container" id="toastContainer" aria-live="polite" aria-atomic="true"></div>
 
   <!-- CLEAN PRODUCT FOOTER -->
   <footer class="app-footer">

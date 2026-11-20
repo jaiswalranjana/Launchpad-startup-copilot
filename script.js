@@ -7,6 +7,16 @@
 (function () {
   'use strict';
 
+  // Global Error Boundary & Unhandled Rejection Watcher
+  if (typeof window !== 'undefined') {
+    window.addEventListener('error', function (event) {
+      console.error('LaunchPad UI Runtime Exception:', event.error || event.message);
+    });
+    window.addEventListener('unhandledrejection', function (event) {
+      console.error('LaunchPad Unhandled Promise Rejection:', event.reason);
+    });
+  }
+
   // =========================================================================
   // 1. STORAGE KEYS & APP STATE
   // =========================================================================
@@ -17,7 +27,8 @@
     currentPlan: null,
     savedPlans: [],
     activeTab: 'feasibility',
-    mvpFilter: 'all'
+    mvpFilter: 'all',
+    previousActiveElement: null
   };
 
   // =========================================================================
@@ -862,11 +873,29 @@
   // =========================================================================
   // 5. LOCALSTORAGE PERSISTENCE & PLAN MANAGEMENT
   // =========================================================================
+  function sanitizeData(val) {
+    if (val === null || typeof val !== 'object') return val;
+    if (Array.isArray(val)) {
+      return val.map(sanitizeData);
+    }
+    const clean = {};
+    for (const key of Object.keys(val)) {
+      if (key === '__proto__' || key === 'constructor' || key === 'prototype') {
+        continue;
+      }
+      clean[key] = sanitizeData(val[key]);
+    }
+    return clean;
+  }
+
   const PlanManager = {
     getAll: function () {
       try {
         const raw = localStorage.getItem(STORAGE_KEY_PLANS);
-        return raw ? JSON.parse(raw) : [];
+        if (!raw) return [];
+        const parsed = JSON.parse(raw);
+        if (!Array.isArray(parsed)) return [];
+        return parsed.map(sanitizeData);
       } catch (e) {
         console.error('Failed to parse saved plans from localStorage', e);
         return [];
@@ -875,13 +904,20 @@
 
     saveAll: function (plans) {
       try {
-        localStorage.setItem(STORAGE_KEY_PLANS, JSON.stringify(plans));
-        state.savedPlans = plans;
+        const sanitized = sanitizeData(plans);
+        localStorage.setItem(STORAGE_KEY_PLANS, JSON.stringify(sanitized));
+        state.savedPlans = sanitized;
         this.updateBadge();
         UI.updateStatsStrip();
       } catch (e) {
         console.error('Failed to write to localStorage', e);
-        Toast.show('Storage error: unable to save plan locally.', 'warning');
+        if (e && (e.name === 'QuotaExceededError' || e.code === 22 || e.code === 1014)) {
+          Toast.show('Storage quota exceeded. Please export or delete older plans.', 'error');
+          if (UI.announce) UI.announce('Storage quota exceeded. Please export or delete older plans.');
+        } else {
+          Toast.show('Storage error: unable to save plan locally.', 'warning');
+          if (UI.announce) UI.announce('Storage error: unable to save plan locally.');
+        }
       }
     },
 
@@ -1126,11 +1162,36 @@
         this.switchSection('planner');
       });
 
-      // Dashboard Tabs
-      elements.dashTabs.forEach(tab => {
+      // Dashboard Tabs (with WAI-ARIA arrow key navigation)
+      const tabList = Array.from(elements.dashTabs);
+      tabList.forEach((tab, index) => {
         tab.addEventListener('click', (e) => {
           const tabKey = e.currentTarget.getAttribute('data-tab');
           this.switchDashboardTab(tabKey);
+        });
+
+        tab.addEventListener('keydown', (e) => {
+          let newIndex = null;
+          if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+            e.preventDefault();
+            newIndex = (index + 1) % tabList.length;
+          } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+            e.preventDefault();
+            newIndex = (index - 1 + tabList.length) % tabList.length;
+          } else if (e.key === 'Home') {
+            e.preventDefault();
+            newIndex = 0;
+          } else if (e.key === 'End') {
+            e.preventDefault();
+            newIndex = tabList.length - 1;
+          }
+
+          if (newIndex !== null) {
+            const nextTab = tabList[newIndex];
+            const nextKey = nextTab.getAttribute('data-tab');
+            this.switchDashboardTab(nextKey);
+            nextTab.focus();
+          }
         });
       });
 
@@ -1291,38 +1352,71 @@
 
     validateForm: function () {
       let isValid = true;
+      let firstInvalidEl = null;
 
       const name = elements.startupName.value.trim();
       const idea = elements.startupIdea.value.trim();
       const industry = elements.startupIndustry.value;
       const audience = elements.targetAudience.value.trim();
 
-      if (!name) {
+      if (!name || name.length > 80) {
         elements.nameError.style.display = 'block';
+        elements.startupName.setAttribute('aria-invalid', 'true');
         isValid = false;
+        if (!firstInvalidEl) firstInvalidEl = elements.startupName;
       } else {
         elements.nameError.style.display = 'none';
+        elements.startupName.setAttribute('aria-invalid', 'false');
       }
 
-      if (!idea || idea.length < 25) {
+      if (!idea || idea.length < 25 || idea.length > 600) {
         elements.ideaError.style.display = 'block';
+        elements.startupIdea.setAttribute('aria-invalid', 'true');
         isValid = false;
+        if (!firstInvalidEl) firstInvalidEl = elements.startupIdea;
       } else {
         elements.ideaError.style.display = 'none';
+        elements.startupIdea.setAttribute('aria-invalid', 'false');
       }
 
       if (!industry) {
         elements.industryError.style.display = 'block';
+        elements.startupIndustry.setAttribute('aria-invalid', 'true');
         isValid = false;
+        if (!firstInvalidEl) firstInvalidEl = elements.startupIndustry;
       } else {
         elements.industryError.style.display = 'none';
+        elements.startupIndustry.setAttribute('aria-invalid', 'false');
       }
 
-      if (!audience) {
+      if (!audience || audience.length > 100) {
         elements.audienceError.style.display = 'block';
+        elements.targetAudience.setAttribute('aria-invalid', 'true');
         isValid = false;
+        if (!firstInvalidEl) firstInvalidEl = elements.targetAudience;
       } else {
         elements.audienceError.style.display = 'none';
+        elements.targetAudience.setAttribute('aria-invalid', 'false');
+      }
+
+      // Check custom budget bounds if entered
+      if (elements.customBudget && elements.customBudget.value) {
+        const val = parseInt(elements.customBudget.value, 10);
+        if (isNaN(val) || val < 50 || val > 1000000) {
+          elements.customBudget.setAttribute('aria-invalid', 'true');
+          isValid = false;
+          if (!firstInvalidEl) firstInvalidEl = elements.customBudget;
+          Toast.show('Custom budget must be between $50 and $1,000,000.', 'warning');
+        } else {
+          elements.customBudget.setAttribute('aria-invalid', 'false');
+        }
+      }
+
+      if (!isValid && firstInvalidEl) {
+        firstInvalidEl.focus();
+        if (this.announce) {
+          this.announce('Form validation failed. Please check the highlighted errors.');
+        }
       }
 
       return isValid;
@@ -1979,8 +2073,13 @@
 
     switchDashboardTab: function (tabKey) {
       state.activeTab = tabKey;
+      let activeLabel = '';
       elements.dashTabs.forEach(tab => {
-        tab.classList.toggle('active', tab.getAttribute('data-tab') === tabKey);
+        const isActive = tab.getAttribute('data-tab') === tabKey;
+        tab.classList.toggle('active', isActive);
+        tab.setAttribute('aria-selected', isActive ? 'true' : 'false');
+        tab.setAttribute('tabindex', isActive ? '0' : '-1');
+        if (isActive) activeLabel = tab.textContent.trim();
       });
 
       Object.keys(elements.tabPanels).forEach(key => {
@@ -1988,14 +2087,83 @@
           elements.tabPanels[key].classList.toggle('active', key === tabKey);
         }
       });
+
+      if (activeLabel && this.announce) {
+        this.announce('Viewing ' + activeLabel);
+      }
     },
 
     openModal: function (modal) {
-      if (modal) modal.style.display = 'flex';
+      if (!modal) return;
+      state.previousActiveElement = document.activeElement;
+      modal.style.display = 'flex';
+
+      const mainEl = document.getElementById('mainContent');
+      const headerEl = document.querySelector('.app-header');
+      if (mainEl) mainEl.setAttribute('aria-hidden', 'true');
+      if (headerEl) headerEl.setAttribute('aria-hidden', 'true');
+
+      // Focus first focusable element inside modal
+      const focusable = modal.querySelectorAll('button:not([disabled]), [href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])');
+      if (focusable.length > 0) {
+        setTimeout(() => focusable[0].focus(), 50);
+      }
+
+      // Modal keydown listener for Escape and Tab trap
+      this._modalKeyHandler = (e) => {
+        if (e.key === 'Escape') {
+          e.preventDefault();
+          this.closeModal(modal);
+          return;
+        }
+        if (e.key === 'Tab') {
+          const focusables = Array.from(modal.querySelectorAll('button:not([disabled]), [href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])'));
+          if (focusables.length === 0) return;
+          const first = focusables[0];
+          const last = focusables[focusables.length - 1];
+
+          if (e.shiftKey && document.activeElement === first) {
+            e.preventDefault();
+            last.focus();
+          } else if (!e.shiftKey && document.activeElement === last) {
+            e.preventDefault();
+            first.focus();
+          }
+        }
+      };
+      document.addEventListener('keydown', this._modalKeyHandler);
+      this.announce('Opened dialog: Saved Startup Blueprints');
     },
 
     closeModal: function (modal) {
-      if (modal) modal.style.display = 'none';
+      if (!modal) return;
+      modal.style.display = 'none';
+
+      const mainEl = document.getElementById('mainContent');
+      const headerEl = document.querySelector('.app-header');
+      if (mainEl) mainEl.removeAttribute('aria-hidden');
+      if (headerEl) headerEl.removeAttribute('aria-hidden');
+
+      if (this._modalKeyHandler) {
+        document.removeEventListener('keydown', this._modalKeyHandler);
+        this._modalKeyHandler = null;
+      }
+
+      if (state.previousActiveElement && typeof state.previousActiveElement.focus === 'function') {
+        state.previousActiveElement.focus();
+        state.previousActiveElement = null;
+      }
+      this.announce('Closed dialog.');
+    },
+
+    announce: function (message) {
+      if (!message) return;
+      const el = document.getElementById('a11yAnnouncer');
+      if (!el) return;
+      el.textContent = '';
+      setTimeout(() => {
+        el.textContent = message;
+      }, 50);
     }
   };
 
@@ -2012,18 +2180,25 @@
       toast.innerHTML = `<span>${escapeHTML(message)}</span>`;
 
       container.appendChild(toast);
+      if (UI.announce) {
+        UI.announce(message);
+      }
 
       setTimeout(() => {
         toast.style.opacity = '0';
         toast.style.transform = 'translateX(50px)';
-        setTimeout(() => toast.remove(), 300);
+        setTimeout(() => {
+          if (toast.parentNode) {
+            toast.parentNode.removeChild(toast);
+          }
+        }, 300);
       }, 3200);
     }
   };
 
   // Helper escape
   function escapeHTML(str) {
-    if (!str) return '';
+    if (str === null || str === undefined) return '';
     return String(str)
       .replace(/&/g, '&amp;')
       .replace(/</g, '&lt;')
@@ -2035,8 +2210,26 @@
   // =========================================================================
   // 8. INITIALIZE ON DOM READY
   // =========================================================================
-  document.addEventListener('DOMContentLoaded', () => {
-    UI.init();
-  });
+  if (typeof document !== 'undefined') {
+    document.addEventListener('DOMContentLoaded', () => {
+      UI.init();
+    });
+  }
+
+  // =========================================================================
+  // 9. EXPORTS FOR AUTOMATED TESTING
+  // =========================================================================
+  if (typeof module !== 'undefined' && module.exports) {
+    module.exports = {
+      RuleEngine,
+      PlanManager,
+      UI,
+      Toast,
+      escapeHTML,
+      STORAGE_KEY_PLANS,
+      STORAGE_KEY_ACTIVE,
+      SAMPLE_PRESETS
+    };
+  }
 
 })();

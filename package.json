@@ -1,0 +1,22 @@
+{
+  "name": "launchpad-startup-copilot",
+  "version": "2.0.0",
+  "description": "LaunchPad – Startup Co-Pilot: Strategic, rule-based startup planning platform",
+  "main": "script.js",
+  "scripts": {
+    "test": "node --test tests/*.test.js"
+  },
+  "keywords": [
+    "startup",
+    "copilot",
+    "business-plan",
+    "mvp",
+    "feasibility-score",
+    "vanilla-js",
+    "accessibility",
+    "security"
+  ],
+  "author": "",
+  "license": "MIT",
+  "private": true
+}

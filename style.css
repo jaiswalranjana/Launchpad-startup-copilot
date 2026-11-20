@@ -138,7 +138,13 @@ body {
   gap: 12px;
   cursor: pointer;
   user-select: none;
-  outline: none;
+  border-radius: var(--radius-sm);
+  transition: opacity var(--transition-fast);
+}
+
+.brand:focus-visible {
+  outline: 2px solid var(--muted-gold);
+  outline-offset: 4px;
 }
 
 .brand-icon {
@@ -1874,4 +1880,88 @@ select.form-control {
   .card-title, .dashboard-plan-title, .persona-name, .sprint-title, .swot-title { color: #142B25 !important; }
   .text-muted, .text-dim, .pillar-rationale, .feature-desc { color: #444444 !important; }
   .tag { border: 1px solid #CCC !important; color: #142B25 !important; }
+}
+
+/* ===================================================================
+   ACCESSIBILITY & KEYBOARD FOCUS ENHANCEMENTS (WCAG 2.1 AA/AAA)
+   =================================================================== */
+
+/* Screen reader only utility */
+.sr-only {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+/* Skip link for keyboard navigation */
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: 20px;
+  background-color: var(--terracotta);
+  color: #FFFFFF !important;
+  padding: 12px 20px;
+  font-weight: 700;
+  font-size: 0.92rem;
+  border-radius: var(--radius-sm);
+  z-index: 10000;
+  text-decoration: none;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
+  transition: top 0.2s ease;
+}
+
+.skip-link:focus {
+  top: 16px;
+  outline: 3px solid var(--muted-gold);
+  outline-offset: 3px;
+}
+
+/* Universal high-contrast focus indicator for keyboard users */
+:focus-visible {
+  outline: 2px solid var(--terracotta);
+  outline-offset: 2px;
+}
+
+/* High-contrast focus rings for buttons and clickable chips */
+.btn:focus-visible,
+.nav-link:focus-visible,
+.dash-tab:focus-visible,
+.preset-pill:focus-visible,
+.preset-btn:focus-visible,
+.mvp-filter-btn:focus-visible,
+.quick-tag:focus-visible,
+.btn-delete-row:focus-visible {
+  outline: 2px solid var(--terracotta) !important;
+  outline-offset: 3px !important;
+  box-shadow: 0 0 0 3px rgba(214, 106, 69, 0.3) !important;
+}
+
+.modal-close:focus-visible {
+  outline: 2px solid var(--terracotta) !important;
+  outline-offset: 2px !important;
+}
+
+/* Checkboxes and radio buttons focus */
+input[type="checkbox"]:focus-visible,
+input[type="radio"]:focus-visible {
+  outline: 2px solid var(--terracotta) !important;
+  outline-offset: 2px !important;
+}
+
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
 }
